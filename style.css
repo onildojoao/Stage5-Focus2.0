@@ -16,9 +16,10 @@ body {
 
 main {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 19.2rem;
-  margin: 25.4rem 23.3rem;
+  margin: 20.4rem 23.3rem;
 }
 
 button {
@@ -69,4 +70,20 @@ button {
 
 .clicked path {
   fill: #ffffff;
+}
+
+@media (max-width: 1000px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
+    gap: 1rem;
+  }
+
+  .sounds-wrapper {
+    width: 30.8rem;
+    height: 33.6rem;
+
+    gap: 1rem;
+  }
 }
