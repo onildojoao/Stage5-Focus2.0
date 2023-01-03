@@ -7,11 +7,39 @@
 :root {
   font-size: 62.5%;
   --bg-button-clicked: #02799d;
+  --font-color: #000000;
+  --bg-color: #ffffff;
+  --svg-fill: #ffffff;
+  --slider-bg: #323238;
+  --slider-bg-clicked: #ffffff;
+}
+
+.dark {
+  --bg-button-clicked: #0a3442;
+  --font-color: #ffffff;
+  --bg-color: #121214;
+  --svg-fill: #c4c4cc;
+  --sound-bt-bg: #29292e;
+  --slider-bg: #ffffff;
+}
+
+.dark .sounds-wrapper .clicked {
+  background-color: var(--bg-button-clicked);
+}
+
+.dark .sounds-wrapper button {
+  background: var(--sound-bt-bg);
+}
+
+.dark path {
+  fill: var(--svg-fill);
 }
 
 body {
   font-family: "Roboto", "sans-serif";
   font-size: 1.6rem;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 
 main {
@@ -55,6 +83,7 @@ button {
   grid-template-columns: 1fr 1fr;
 
   gap: 3.2rem;
+  position: relative;
 }
 
 .sounds-wrapper button {
@@ -64,12 +93,69 @@ button {
   border: none;
 }
 
+.button-slide-wrapper {
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  z-index: 1;
+  left: 2rem;
+  bottom: 2rem;
+
+  -webkit-appearance: none;
+  width: 70%;
+  height: 0.7rem;
+  border-radius: 10px;
+  background: var(--slider-bg);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--slider-bg);
+  cursor: pointer;
+}
+
 .clicked {
   background-color: var(--bg-button-clicked);
 }
 
 .clicked path {
-  fill: #ffffff;
+  fill: var(--svg-fill);
+}
+
+.light-theme {
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  height: 4.4rem;
+  width: 4.4rem;
+  top: 5rem;
+  right: 5rem;
+}
+
+.dark-theme {
+  height: 4.4rem;
+  width: 4.4rem;
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 1000px) {
@@ -85,5 +171,37 @@ button {
     height: 33.6rem;
 
     gap: 1rem;
+  }
+  .light-theme,
+  .dark-theme {
+    top: 2rem;
+    right: 47.5%;
+  }
+
+  .slider {
+    position: absolute;
+    z-index: 1;
+    left: 2.1rem;
+    bottom: 3rem;
+
+    -webkit-appearance: none;
+    width: 65%;
+    height: 0.7rem;
+    border-radius: 10px;
+    background: var(--slider-bg);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--slider-bg);
+    cursor: pointer;
   }
 }

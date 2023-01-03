@@ -1,3 +1,5 @@
+const lightThemeButton = document.querySelector("#lightThemeButton")
+const darkThemeButton = document.querySelector("#darkThemeButton")
 const minutesDisplay = document.querySelector("#minutes")
 const secondsDisplay = document.querySelector("#seconds")
 const playTimerButton = document.querySelector("#playTimerButton")
@@ -9,10 +11,17 @@ const rainAudioButton = document.querySelector("#rainAudioButton")
 const storeAudioButton = document.querySelector("#storeAudioButton")
 const fireAudioButton = document.querySelector("#fireAudioButton")
 
-const storeAudio = new Audio("./audio/Cafeteria.wav")
-const rainAudio = new Audio("./audio/Chuva.wav")
+const htmlInstance = document.documentElement
+
 const forestAudio = new Audio("./audio/Floresta.wav")
+const rainAudio = new Audio("./audio/Chuva.wav")
+const storeAudio = new Audio("./audio/Cafeteria.wav")
 const fireAudio = new Audio("./audio/Lareira.wav")
+
+const forestSlider = document.querySelector("#forestSlider")
+const rainSlider = document.querySelector("#rainSlider")
+const storeSlider = document.querySelector("#storeSlider")
+const fireSlider = document.querySelector("#fireSlider")
 
 let startMinutes = Number(minutesDisplay.textContent)
 let timerTimeOut
@@ -80,6 +89,11 @@ forestAudioButton.addEventListener("click", () => {
   forestAudioButton.classList.add("clicked")
   forestAudio.play()
   forestAudio.loop = true
+  forestSlider.value = 50
+})
+
+forestSlider.addEventListener("change", () => {
+  forestAudio.volume = forestSlider.value / 100
 })
 
 rainAudioButton.addEventListener("click", () => {
@@ -87,13 +101,23 @@ rainAudioButton.addEventListener("click", () => {
   rainAudioButton.classList.add("clicked")
   rainAudio.play()
   rainAudio.loop = true
+  rainSlider.value = 50
+})
+
+rainSlider.addEventListener("change", () => {
+  rainAudio.volume = rainSlider.value / 100
 })
 
 storeAudioButton.addEventListener("click", () => {
   resetAudioButtons()
   storeAudioButton.classList.add("clicked")
   storeAudio.play()
-  forestAudio.loop = true
+  storeAudio.loop = true
+  storeSlider.value = 50
+})
+
+storeSlider.addEventListener("change", () => {
+  storeAudio.volume = storeSlider.value / 100
 })
 
 fireAudioButton.addEventListener("click", () => {
@@ -101,7 +125,18 @@ fireAudioButton.addEventListener("click", () => {
   fireAudioButton.classList.add("clicked")
   fireAudio.play()
   fireAudio.loop = true
+  fireSlider.value = 50
 })
+
+fireSlider.addEventListener("change", () => {
+  fireAudio.volume = fireSlider.value / 100
+})
+
+function changeVolume(audioElement, sliderValue) {
+  console.log(audioElement.volume)
+  console.log(sliderValue)
+  audioElement.volume = sliderValue / 100
+}
 
 function resetAudioButtons() {
   forestAudioButton.classList.remove("clicked")
@@ -112,4 +147,15 @@ function resetAudioButtons() {
   storeAudio.pause()
   fireAudioButton.classList.remove("clicked")
   fireAudio.pause()
+}
+
+/* Theme Switch */
+darkThemeButton.addEventListener("click", toggleTheme)
+
+lightThemeButton.addEventListener("click", toggleTheme)
+
+function toggleTheme() {
+  htmlInstance.classList.toggle("dark")
+  darkThemeButton.classList.toggle("hidden")
+  lightThemeButton.classList.toggle("hidden")
 }
